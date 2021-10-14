@@ -93,10 +93,8 @@ class App(StateMachine):
 
         def _update():
             print("flashcard: update")
-            battery = (self.magtag.battery - 3.2) / 1.0 * 100.0
-
             self.magtag.set_text("word", self.manager.word_text)
-            self.magtag.set_text("battery", "{:.0f}%".format(battery))
+            self.magtag.set_text("battery", "{:.2f}V".format(self.magtag.battery))
 
             self.publish(SleepEvent())
 
