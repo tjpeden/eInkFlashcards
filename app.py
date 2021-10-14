@@ -67,18 +67,17 @@ class App(StateMachine):
             # Button A Label
             self.magtag.add_text(
                 "button_a",
+                text="Menu",
                 text_anchor_point=(0.5, 1.0),
                 text_position=(25, 128),
             )
             # Button D Label
             self.magtag.add_text(
                 "button_d",
+                text="Next Word",
                 text_anchor_point=(0.5, 1.0),
                 text_position=(245, 128),
             )
-
-            self.magtag.set_text("button_a", "Menu")
-            self.magtag.set_text("button_d", "Next Word")
 
             self._refresh = True
 
