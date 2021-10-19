@@ -12,27 +12,29 @@ class InputManager(StateMachine):
 
         self.magtag = magtag
 
-    def start(self, event: Event) -> None:
+        self._start_switch = self._create_start_switch()
+        self._active_switch = self._create_active_switch()
+        self._sleep_switch = self._create_sleep_switch()
+
+    def _create_start_switch(self):
         def _start():
+            print("InputManager#start: start")
             self.subscribe("update")
             self.subscribe("sleep")
 
             self.transition_to(self.active)
 
-        switch = {
+        return {
             "start": _start
         }
 
-        if event.name in switch:
-            switch[event.name]()
-
-    def active(self, event: Event) -> None:
+    def _create_active_switch(self):
         def _enter():
-            print("active: enter")
+            print("InputManager#active: enter")
             self.magtag.init_buttons()
 
         def _exit():
-            print("active: exit")
+            print("InputManager#active: exit")
             self.magtag.deinit_buttons()
 
         def _update():
@@ -45,31 +47,34 @@ class InputManager(StateMachine):
                     )
 
         def _sleep():
-            print("active: sleep")
+            print("InputManager#active: sleep")
             self.transition_to(self.sleep)
 
-        switch = {
+        return {
             "enter": _enter,
             "exit": _exit,
             "update": _update,
             "sleep": _sleep,
         }
 
-        if event.name in switch:
-            switch[event.name]()
-
-    def sleep(self, event: Event) -> None:
+    def _create_sleep_switch(self):
         def _update():
-            print("sleep: update")
+            print("InputManager#sleep: update")
             buttons = (board.BUTTON_A, board.BUTTON_D)
             button_alarms = [alarm.pin.PinAlarm(pin=pin, value=False, pull=True) for pin in buttons]
 
             alarm.exit_and_deep_sleep_until_alarms(*button_alarms)
 
-        switch = {
-            "enter": lambda: print("sleep: enter"),
+        return {
+            "enter": lambda: print("InputManager#sleep: enter"),
             "update": _update,
         }
 
-        if event.name in switch:
-            switch[event.name]()
+    def start(self, event: Event) -> None:
+        self._start_switch.get(event.name, lambda: None)()
+
+    def active(self, event: Event) -> None:
+        self._active_switch.get(event.name, lambda: None)()
+
+    def sleep(self, event: Event) -> None:
+        self._sleep_switch.get(event.name, lambda: None)()

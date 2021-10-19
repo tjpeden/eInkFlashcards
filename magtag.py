@@ -32,7 +32,7 @@ class MagTag:
         self._labels = {}
 
         # Battery Monitor
-        self._batt_monitor = AnalogIn(board.BATTERY)
+        self._battery_monitor = AnalogIn(board.BATTERY)
 
         # Speaker Enable
         self._speaker_enable = DigitalInOut(board.SPEAKER_ENABLE)
@@ -42,8 +42,7 @@ class MagTag:
     def init_buttons(self):
         for pin in (board.BUTTON_A, board.BUTTON_B, board.BUTTON_C, board.BUTTON_D):
             button = DigitalInOut(pin)
-            button.direction = Direction.INPUT
-            button.pull = Pull.UP
+            button.switch_to_input(pull=Pull.UP)
 
             self.button_inputs.append(button)
             self.buttons.append(Debouncer(button))
@@ -89,6 +88,22 @@ class MagTag:
         text_scale=1,
         line_spacing=1.25,
     ) -> None:
+        """
+        Add text labels with settings
+
+        :param str name: The string identifier for this label.
+        :param str text_font: The path to your font file for your data text display.
+        :param str text: If this is provided, it will set the initial text of the label.
+        :param text_color: The color of the text, in 0xRRGGBB format. Can be a list of colors for
+                           when there's multiple texts. Defaults to ``None``.
+        :param (float,float) text_anchor_point: Values between 0 and 1 to indicate where the text
+                                                position is relative to the label
+        :param text_position: The position of your extracted text on the display in an (x, y) tuple.
+                              Can be a list of tuples for when there's a list of json_paths, for
+                              example.
+        :param int text_scale: The factor to scale the default size of the text by
+        :param float line_spacing: The factor to space the lines apart
+        """
         self._labels[name] = Label(
             text_font,
             text=text,
@@ -102,9 +117,20 @@ class MagTag:
         self.root.append(self._labels[name])
 
     def set_text(self, name: str, text: str) -> None:
+        """
+        Update label text by string identifier.
+
+        :param str name: The string identifier
+        :param str val: The text to be displayed
+        """
         self._labels[name].text = text
 
     def remove_text(self, name: str) -> None:
+        """
+        Remove label by string identifier.
+
+        :param str name: The string identifier
+        """
         self.root.remove(self._labels[name])
 
         del self._labels[name]
@@ -159,4 +185,4 @@ class MagTag:
     @property
     def battery(self):
         """Return the voltage of the battery"""
-        return (self._batt_monitor.value / 65535.0) * 3.3 * 2
+        return (self._battery_monitor.value / 65535.0) * 3.3 * 2

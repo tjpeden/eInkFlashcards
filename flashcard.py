@@ -48,19 +48,31 @@ class Flashcard:
     def word_text(self) -> str:
         return self._cards[self._mode][self._week][self._word]
 
-    def next_mode(self) -> None:
+    def increment_mode(self) -> None:
         self.refresh = True
 
         modes = len(self._cards)
 
         self._mode = (self._mode + 1) % modes
+
+        weeks = len(self._cards[self._mode])
+
+        self._week = weeks - 1
         self._word = 0
 
-        print("self._mode: {}".format(self._mode))
-        print("self._week: {}".format(self._week))
-        print("self._word: {}".format(self._word))
+    def decrement_mode(self) -> None:
+        self.refresh = True
 
-    def next_week(self) -> None:
+        modes = len(self._cards)
+
+        self._mode = (self._mode - 1) % modes
+
+        weeks = len(self._cards[self._mode])
+
+        self._week = weeks - 1
+        self._word = 0
+
+    def increment_week(self) -> None:
         self.refresh = True
 
         weeks = len(self._cards[self._mode])
@@ -68,9 +80,13 @@ class Flashcard:
         self._week = (self._week + 1) % weeks
         self._word = 0
 
-        print("self._mode: {}".format(self._mode))
-        print("self._week: {}".format(self._week))
-        print("self._word: {}".format(self._word))
+    def decrement_week(self) -> None:
+        self.refresh = True
+
+        weeks = len(self._cards[self._mode])
+
+        self._week = (self._week - 1) % weeks
+        self._word = 0
 
     def next_word(self) -> None:
         self.refresh = True
@@ -78,10 +94,6 @@ class Flashcard:
         words = len(self._cards[self._mode][self._week])
 
         self._word = (self._word + 1) % words
-
-        print("self._mode: {}".format(self._mode))
-        print("self._week: {}".format(self._week))
-        print("self._word: {}".format(self._word))
 
     def shuffle_words(self) -> None:
         self.refresh = True
@@ -91,8 +103,4 @@ class Flashcard:
         words = sorted(words, key=lambda _: random())
 
         self._cards[self._mode][self._week] = words
-        self.card = 0
-
-        print("self._mode: {}".format(self._mode))
-        print("self._week: {}".format(self._week))
-        print("self._word: {}".format(self._word))
+        self._word = 0

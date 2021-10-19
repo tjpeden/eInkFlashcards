@@ -1,69 +1,50 @@
 {
   "modes": [
-    "Vocabulary",
-    "Sight Words"
+    "Spelling",
+    "Sight Words",
+    "Word Work"
   ],
   "cards": [
     [
       [
-        "cat",
-        "man",
-        "tap",
-        "and",
-        "dad",
-        "bag",
-        "a",
-        "hat",
-        "the",
-        "to"
-      ],
-      [
-        "you",
-        "it",
-        "I",
-        "met",
-        "web",
-        "in",
-        "leg",
-        "bed",
-        "pet",
-        "men"
-      ],
-      [
-        "kid",
-        "for",
-        "rib",
-        "win",
-        "pig",
-        "lip",
+        "big",
+        "rag",
         "sit",
-        "up",
-        "look",
-        "said"
+        "bag",
+        "bit",
+        "hit",
+        "pig",
+        "tag",
+        "flag",
+        "fit",
+        "dig",
+        "kit",
+        "fig",
+        "brag",
+        "snag",
+        "rig",
+        "skit",
+        "wig"
       ],
       [
-        "top",
-        "job",
-        "lot",
-        "got",
-        "little",
-        "dog",
-        "we",
-        "is",
-        "mom",
-        "go"
-      ],
-      [
-        "Week 5.0",
-        "Week 5.1",
-        "Week 5.2",
-        "Week 5.3",
-        "Week 5.4",
-        "Week 5.5",
-        "Week 5.6",
-        "Week 5.7",
-        "Week 5.8",
-        "Week 5.9"
+        "hill",
+        "man",
+        "pin",
+        "fin",
+        "pill",
+        "spin",
+        "will",
+        "pan",
+        "spill",
+        "grin",
+        "ran",
+        "tan",
+        "mill",
+        "skin",
+        "Jill",
+        "plan",
+        "bill",
+        "can"
       ]
     ],
     [
@@ -116,16 +97,78 @@
         "look"
       ],
       [
-        "Week 5.0",
-        "Week 5.1",
-        "Week 5.2",
-        "Week 5.3",
-        "Week 5.4",
-        "Week 5.5",
-        "Week 5.6",
-        "Week 5.7",
-        "Week 5.8",
-        "Week 5.9"
+        "my",
+        "than",
+        "first",
+        "water",
+        "been",
+        "call",
+        "who",
+        "because",
+        "red",
+        "now"
+      ]
+    ],
+    [
+      [
+        "cat",
+        "man",
+        "tap",
+        "and",
+        "dad",
+        "bag",
+        "a",
+        "hat",
+        "the",
+        "to"
+      ],
+      [
+        "you",
+        "it",
+        "I",
+        "met",
+        "web",
+        "in",
+        "leg",
+        "bed",
+        "pet",
+        "men"
+      ],
+      [
+        "kid",
+        "for",
+        "rib",
+        "win",
+        "pig",
+        "lip",
+        "sit",
+        "up",
+        "look",
+        "said"
+      ],
+      [
+        "top",
+        "job",
+        "lot",
+        "got",
+        "little",
+        "dog",
+        "we",
+        "is",
+        "mom",
+        "go"
+      ],
+      [
+        "tub",
+        "fun",
+        "bus",
+        "down",
+        "see",
+        "hug",
+        "cut",
+        "cub",
+        "can",
+        "not"
       ]
     ]
   ]
