@@ -2,7 +2,8 @@
   "modes": [
     "Spelling",
     "Sight Words",
-    "Word Work"
+    "Word Work",
+    "Reading Words"
   ],
   "cards": [
     [
@@ -45,6 +46,45 @@
         "plan",
         "bill",
         "can"
+      ],
+      [
+        "bid",
+        "cap",
+        "rip",
+        "lip",
+        "hid",
+        "lid",
+        "map",
+        "hip",
+        "zip",
+        "rid",
+        "snap",
+        "rap",
+        "nip",
+        "grid",
+        "trip",
+        "slid",
+        "clip",
+        "tap"
+      ],
+      [
+        "hop",
+        "sit",
+        "not",
+        "bit",
+        "got",
+        "hit",
+        "mop",
+        "cop",
+        "lot",
+        "hot",
+        "fit",
+        "kit",
+        "stop",
+        "pot",
+        "pop",
+        "dot",
+        "shop"
       ]
     ],
     [
@@ -107,6 +147,30 @@
         "because",
         "red",
         "now"
+      ],
+      [
+        "he",
+        "was",
+        "for",
+        "on",
+        "are",
+        "as",
+        "with",
+        "his",
+        "they",
+        "I"
+      ],
+      [
+        "but",
+        "not",
+        "what",
+        "all",
+        "were",
+        "we",
+        "when",
+        "your",
+        "can",
+        "said"
       ]
     ],
     [
@@ -169,6 +233,52 @@
         "cub",
         "can",
         "not"
+      ],
+      [
+        "bake",
+        "tale",
+        "game",
+        "five",
+        "line",
+        "bike",
+        "one",
+        "my",
+        "me",
+        "big"
+      ],
+      [
+        "home",
+        "note",
+        "rode",
+        "cute",
+        "cube",
+        "tube",
+        "come",
+        "blue",
+        "red",
+        "where"
+      ]
+    ],
+    [
+      [
+        "listen",
+        "mumble",
+        "goes",
+        "really",
+        "know",
+        "ever",
+        "every",
+        "never",
+        "very",
+        "hear",
+        "belong",
+        "punch",
+        "point",
+        "thing",
+        "stare",
+        "finish",
+        "glare",
+        "face"
       ]
     ]
   ]

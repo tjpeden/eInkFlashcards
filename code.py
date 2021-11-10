@@ -1,4 +1,4 @@
-import alarm
+# import alarm
 
 from magtag import MagTag
 from event import ButtonPressedEvent, StartEvent, UpdateEvent
@@ -12,20 +12,22 @@ app = App(magtag)
 app.dispatch(StartEvent)
 inputs.dispatch(StartEvent)
 
-if alarm.wake_alarm:
-    if not magtag.button_inputs[0].value:
-        magtag.play_tone(1046.5, 0.1)
-        while not magtag.buttons[0].value:
-            magtag.buttons[0].update()
+# if alarm.wake_alarm:
+if not magtag.button_inputs[0].value:
+    magtag.play_tone(1046.5, 0.1)
 
-        app.dispatch(ButtonPressedEvent("A"))
+    while not magtag.buttons[0].value:
+        magtag.buttons[0].update()
 
-    if not magtag.button_inputs[3].value:
-        magtag.play_tone(1046.5, 0.1)
-        while not magtag.buttons[3].value:
-            magtag.buttons[3].update()
+    app.dispatch(ButtonPressedEvent("A"))
 
-        app.dispatch(ButtonPressedEvent("D"))
+if not magtag.button_inputs[3].value:
+    magtag.play_tone(1046.5, 0.1)
+
+    while not magtag.buttons[3].value:
+        magtag.buttons[3].update()
+
+    app.dispatch(ButtonPressedEvent("D"))
 
 while True:
     # `publish` will call `dispatch` on all state machines

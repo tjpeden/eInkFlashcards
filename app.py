@@ -42,17 +42,17 @@ class App(StateMachine):
 
         def _pressed_b():
             if self._menu_selection == 0:
-                self.manager.increment_mode()
+                self.manager.decrement_mode()
             if self._menu_selection == 1:
-                self.manager.increment_week()
+                self.manager.decrement_week()
 
             self._refresh = True
 
         def _pressed_c():
             if self._menu_selection == 0:
-                self.manager.decrement_mode()
+                self.manager.increment_mode()
             if self._menu_selection == 1:
-                self.manager.decrement_week()
+                self.manager.increment_week()
 
             self._refresh = True
 
@@ -70,7 +70,7 @@ class App(StateMachine):
 
     def _create_start_switch(self):
         def _start():
-            print("App#start: start")
+            # print("App#start: start")
             self.subscribe("update")
             self.subscribe("button_pressed")
 
@@ -82,7 +82,7 @@ class App(StateMachine):
 
     def _create_flashcard_switch(self):
         def _enter(_: Event):
-            print("App#flashcard: enter")
+            # print("App#flashcard: enter")
             # Word Label
             self.magtag.add_text(
                 "word",
@@ -123,26 +123,22 @@ class App(StateMachine):
             self._refresh = True
 
         def _exit(_: Event):
-            print("App#flashcard: exit")
+            # print("App#flashcard: exit")
             self.magtag.remove_text("word")
             self.magtag.remove_text("battery")
             self.magtag.remove_text("button_a")
             self.magtag.remove_text("button_d")
 
         def _update(_: Event):
-            print("App#flashcard: update")
-            self.magtag.set_text(
-                "title",
-                "{}:{}:{}".format(
-                    self.manager.mode_text,
-                    self.manager.week_text,
-                    self.manager._word,
-                ),
+            # print("App#flashcard: update")
+            title = "{}:{}:{}".format(
+                self.manager.mode_text,
+                self.manager.week_text,
+                self.manager._word + 1,
             )
-            self.magtag.set_text(
-                "word",
-                self.manager.word_text,
-            )
+            print("{} {}".format(title, self.manager.word_text))
+            self.magtag.set_text("title", title)
+            self.magtag.set_text("word", self.manager.word_text)
             self.magtag.set_text(
                 "battery",
                 "{:.2f}V".format(self.magtag.battery),
@@ -151,7 +147,7 @@ class App(StateMachine):
             self.publish(SleepEvent)
 
         def _button_pressed(event: Event):
-            print("App#flashcard: button_pressed {}".format(event.button))
+            # print("App#flashcard: button_pressed {}".format(event.button))
             self._flashcard_button_pressed_switch.get(event.button, lambda: None)()
 
         return {
@@ -163,7 +159,7 @@ class App(StateMachine):
 
     def _create_menu_switch(self):
         def _enter(_: Event):
-            print("App#menu: enter")
+            # print("App#menu: enter")
             # Menu Label
             self.magtag.add_text(
                 "menu",
@@ -186,21 +182,21 @@ class App(StateMachine):
             self._menu_selection = 0
 
         def _exit(_: Event):
-            print("App#menu: exit")
+            # print("App#menu: exit")
             self.magtag.remove_text("menu")
             self.magtag.remove_text("button_a")
 
             # self.manager.shuffle_words()
 
         def _update(_: Event):
-            print("App#menu: update")
+            # print("App#menu: update")
             mode = "[{}]".format(self.manager.mode_text) if self._menu_selection == 0 else self.manager.mode_text
             week = "[{}]".format(self.manager.week_text) if self._menu_selection == 1 else self.manager.week_text
 
             self.magtag.set_text("menu", "{}:{}".format(mode, week))
 
         def _button_pressed(event: Event):
-            print("App#menu: button_pressed {}".format(event.button))
+            # print("App#menu: button_pressed {}".format(event.button))
             self._menu_button_pressed_switch.get(event.button, lambda: None)()
 
         return {

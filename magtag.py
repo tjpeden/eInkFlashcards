@@ -17,8 +17,8 @@ class MagTag:
     def __init__(self) -> None:
         self.display = board.DISPLAY
         self.root = Group()
-        self.button_inputs = []
-        self.buttons = []
+        self.button_inputs = None
+        self.buttons = None
 
         self._background = Group()
         self._background_file = None
@@ -40,6 +40,9 @@ class MagTag:
         self._speaker_enable.value = False
 
     def init_buttons(self):
+        self.button_inputs = []
+        self.buttons = []
+
         for pin in (board.BUTTON_A, board.BUTTON_B, board.BUTTON_C, board.BUTTON_D):
             button = DigitalInOut(pin)
             button.switch_to_input(pull=Pull.UP)
@@ -51,8 +54,8 @@ class MagTag:
         for i in self.button_inputs:
             i.deinit()
 
-        self.button_inputs = []
-        self.buttons = []
+        self.button_inputs = None
+        self.buttons = None
 
         gc.collect()
 

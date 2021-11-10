@@ -18,7 +18,7 @@ class InputManager(StateMachine):
 
     def _create_start_switch(self):
         def _start():
-            print("InputManager#start: start")
+            # print("InputManager#start: start")
             self.subscribe("update")
             self.subscribe("sleep")
 
@@ -30,11 +30,11 @@ class InputManager(StateMachine):
 
     def _create_active_switch(self):
         def _enter():
-            print("InputManager#active: enter")
+            # print("InputManager#active: enter")
             self.magtag.init_buttons()
 
         def _exit():
-            print("InputManager#active: exit")
+            # print("InputManager#active: exit")
             self.magtag.deinit_buttons()
 
         def _update():
@@ -47,7 +47,7 @@ class InputManager(StateMachine):
                     )
 
         def _sleep():
-            print("InputManager#active: sleep")
+            # print("InputManager#active: sleep")
             self.transition_to(self.sleep)
 
         return {
@@ -59,14 +59,14 @@ class InputManager(StateMachine):
 
     def _create_sleep_switch(self):
         def _update():
-            print("InputManager#sleep: update")
+            # print("InputManager#sleep: update")
             buttons = (board.BUTTON_A, board.BUTTON_D)
             button_alarms = [alarm.pin.PinAlarm(pin=pin, value=False, pull=True) for pin in buttons]
 
             alarm.exit_and_deep_sleep_until_alarms(*button_alarms)
 
         return {
-            "enter": lambda: print("InputManager#sleep: enter"),
+            # "enter": lambda: print("InputManager#sleep: enter"),
             "update": _update,
         }
 
